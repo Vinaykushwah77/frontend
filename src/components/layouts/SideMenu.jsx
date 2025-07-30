@@ -30,7 +30,7 @@ const SideMenu = ({ activeMenu }) => {
             alt="Profile Image"
             className="w-20 h-20 bg-slate-400 object-cover rounded-full"
           />) :<CharAvatar
-              fullName={user?.fullname}
+              fullName={user?.fullName}
               width="w-20"
               height="h-20"
               style="text-xl"
