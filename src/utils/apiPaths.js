@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:8000";
+export const BASE_URL = "https://backend-h5pk.onrender.com";
 
 //utils/apiPaths.js
 export const API_PATHS = {
