@@ -20,9 +20,8 @@ function Login() {
   //Handle Login Form Submit
   const handleLogin = async (e) => {
   e.preventDefault();
-
   setError("");
-  
+
   if (!validateEmail(email)) {
     setError("Please enter a valid email address.");
     return;
@@ -33,19 +32,24 @@ function Login() {
     return;
   }
 
-  
-  //  Login API Call
   try {
+    // 1. Login and get token
     const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
       email,
       password,
     });
-    
-    const { token, user } = response.data;
+
+    const { token } = response.data;
 
     if (token) {
+      // 2. Save token
       localStorage.setItem("token", token);
-      updateUser(user);
+
+      //  3. Fetch fresh user info (with correct image URL)
+      const userRes = await axiosInstance.get(API_PATHS.AUTH.GET_USER_INFO);
+      updateUser(userRes.data); //  This now has correct profileImageUrl
+
+      // 4. Navigate to dashboard
       navigate("/dashboard");
     }
   } catch (error) {
@@ -56,6 +60,7 @@ function Login() {
     }
   }
 };
+
 
   return (
     <AuthLayout>
