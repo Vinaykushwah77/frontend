@@ -17,7 +17,10 @@ const SignUp = () => {
 
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
-
+   useEffect(() => {
+    console.log("Image file: ", profilePic);
+  }, [profilePic]);
+  
   // Handle Sign Up Form Submit
   const handleSignUp = async (e) => {
     e.preventDefault();
