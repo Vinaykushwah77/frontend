@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AuthLayout from '../../components/layouts/AuthLayout';
 import { useNavigate, Link } from 'react-router-dom';
 import Input from '../../components/layouts/Input/Input';
@@ -60,6 +60,8 @@ const SignUp = () => {
 
       const { token, user } = response.data;
 
+       console.log('Uploaded Image URL:', user.profileImageUrl);
+
       if (token) {
         localStorage.setItem("token", token);
         updateUser(user);
@@ -99,7 +101,7 @@ const SignUp = () => {
               onChange={({ target }) => setEmail(target.value)}
               label="Email Address"
               placeholder="abc@example.com"
-              type="text"
+              type="email"
             />
             <div className="col-span-2">
               <Input
